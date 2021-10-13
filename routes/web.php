@@ -33,7 +33,22 @@ Route::resource('/user', 'AuthController');
 |--------------------------------------------------------------------------
 |  ROUTE NESTED
 |--------------------------------------------------------------------------
-|wHEN wE NEED EXTRA ROUTE METHOD IN RESOURCE CONTROLLER WE
-|SHOULD WRITE EXTRS ROUTE ABOVE OF MAIN RESOURCE ROUTE
+|ALL SIMILLER ROUTE SHOULD BE IN GROUP ROUTE YOU CAN ADD MORE
+|GROUP IN MAIN GROUP USING NESTED ROUTE
 |
 */
+
+
+Route::group(['middleware' => 'auth'], function() {
+    
+    Route::group(['prefix' => 'user' , 'as' => 'user.', 'namespace' => 'Auth/'], function() {
+        Route::get('/export' , 'AuthController@export');
+        Route::resource('/', 'AuthController');
+    });
+
+    Route::group(['prefix' => 'admin' , 'as' => 'admin.', 'namespace' => 'Admin/'], function() {
+        Route::get('/export' , 'AdminController@export');
+        Route::resource('/', 'AdminController');
+    });
+
+});
