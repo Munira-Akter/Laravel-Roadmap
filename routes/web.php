@@ -40,7 +40,7 @@ Route::resource('/user', 'AuthController');
 
 
 Route::group(['middleware' => 'auth'], function() {
-    
+
     Route::group(['prefix' => 'user' , 'as' => 'user.', 'namespace' => 'Auth/'], function() {
         Route::get('/export' , 'AuthController@export');
         Route::resource('/', 'AuthController');
