@@ -4,19 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
-
-/*
-|--------------------------------------------------------------------------
 | Laravel 8 Controller namespace register in RouteServiceProvider
 |--------------------------------------------------------------------------
 |
@@ -25,6 +12,28 @@ use Illuminate\Support\Facades\Route;
 |without use namespace of controller
 |
 */
-
-
 Route::get('/', 'PracticeController@index');
+
+
+/*
+|--------------------------------------------------------------------------
+|  EXTRA ROUTE METHOD IN RESOURCE CONTROLLER
+|--------------------------------------------------------------------------
+|wHEN wE NEED EXTRA ROUTE METHOD IN RESOURCE CONTROLLER WE
+|SHOULD WRITE EXTRS ROUTE ABOVE OF MAIN RESOURCE ROUTE
+|
+*/
+
+Route::get('/user/export' , 'AuthController@export');
+Route::resource('/user', 'AuthController');
+
+
+
+/*
+|--------------------------------------------------------------------------
+|  ROUTE NESTED
+|--------------------------------------------------------------------------
+|wHEN wE NEED EXTRA ROUTE METHOD IN RESOURCE CONTROLLER WE
+|SHOULD WRITE EXTRS ROUTE ABOVE OF MAIN RESOURCE ROUTE
+|
+*/
