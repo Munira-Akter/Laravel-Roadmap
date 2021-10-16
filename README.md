@@ -53,3 +53,7 @@ you have to pass title value through index method
      <!-- In Controller -->
     $page_title = 'Home Page';
      return view('',compact('page_title'));
+     
+     
+ ## Access auth user from controller method
+    ``` $request -> user(); ```
