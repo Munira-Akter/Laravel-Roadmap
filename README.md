@@ -30,6 +30,45 @@ controller folder name should be in uppercase
 you should take controller name based on it's feature
 
 
+#### Route Chanchin
+    php artisan route:clear
+
+
+#### Route Model Binding
+
+    <!-- Single Model Binding with id coloum -->
+
+    Route::get('/user/{user}', 'UserController@show');
+
+    Public function show(User $user){
+        return $user;
+    }
+
+
+
+    <!-- Single Model Binding with custom colum -->
+
+    Route::get('/user/{user:slug}','UserController@show');
+
+     Public function show(User $user){
+        return $user;
+    }
+
+
+    <!-- Multiple route binding with custom and id colum -->
+
+    Route:get('user/{user}/posts/{post:slug}' , 'UserController@show');
+
+     Public function show(User $user, Post $post){
+        return [
+            'user' => $user,
+            'post' => $post,
+        ];
+    }
+
+
+
+
 ### Balde Related All Document Start From Here
 
 #### Blade Basic
@@ -56,4 +95,11 @@ you have to pass title value through index method
      
      
  ## Access auth user from controller method
-    ``` $request -> user(); ```
+    $request -> user();
+
+
+## Validation Error Message
+    required|required_with:name|required_without:name|present|fill|dimension|Password::letters()->symblos() etc
+
+
+## 
