@@ -67,6 +67,12 @@ you should take controller name based on it's feature
     }
 
 
+    <!-- You can redirect a route if requested data is not found -->
+    Route:get('user/{user}/posts/{post:slug}' , 'UserController@show')->missing(function(){
+        return view('post.notfound');
+    });
+
+
 
 
 ### Balde Related All Document Start From Here
@@ -102,4 +108,29 @@ you have to pass title value through index method
     required|required_with:name|required_without:name|present|fill|dimension|Password::letters()->symblos() etc
 
 
-## 
+### Middelwear
+
+When assigning middleware to a group of routes, you may occasionally need to prevent the middleware from being applied to an individual route within the group. You may accomplish this using the withoutMiddleware method:
+
+    use App\Http\Middleware\EnsureTokenIsValid;
+
+    Route::middleware([EnsureTokenIsValid::class])->group(function () {
+    Route::get('/', function () {
+        //
+    });
+
+    Route::get('/profile', function () {
+        //
+    })->withoutMiddleware([EnsureTokenIsValid::class]);
+    });
+
+
+You acan pass perametre in middelware handle method and pass the argument when use it
+
+    
+    
+    
+    
+    Route::put('/post/{id}', function ($id) {
+    //
+    })->middleware('role:editor');
